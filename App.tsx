@@ -9,6 +9,7 @@ import { SectionId } from './types';
 
 function App() {
   const [activeSection, setActiveSection] = useState<SectionId>('home');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleNavigate = (id: SectionId) => {
     setActiveSection(id);
@@ -20,13 +21,13 @@ function App() {
 
   return (
     <div className="bg-latte text-umber min-h-screen font-sans selection:bg-forest selection:text-white">
-      <Navbar activeSection={activeSection} onNavigate={handleNavigate} />
+      <Navbar activeSection={activeSection} onNavigate={handleNavigate} isHidden={isModalOpen} />
       
       <main className="relative z-10">
         <Hero />
-        <Features />
+        <Features onModalChange={setIsModalOpen} />
         <Experience />
-        <Projects />
+        <Projects onModalChange={setIsModalOpen} />
         
         {/* Connect section */}
         <section id="connect" className="py-32 bg-forest text-paper flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">

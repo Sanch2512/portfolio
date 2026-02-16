@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Brain, Code2, ShieldCheck, Layout, Server, Database, Briefcase, Leaf, X } from 'lucide-react';
 
 interface SkillDetail {
@@ -83,8 +83,23 @@ const SKILL_DETAILS: Record<string, SkillDetail> = {
   }
 };
 
-const Features: React.FC = () => {
+interface FeaturesProps {
+  onModalChange?: (isOpen: boolean) => void;
+}
+
+const Features: React.FC<FeaturesProps> = ({ onModalChange }) => {
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (selectedSkill) {
+      document.body.style.overflow = 'hidden';
+      onModalChange?.(true);
+    } else {
+      document.body.style.overflow = 'unset';
+      onModalChange?.(false);
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [selectedSkill, onModalChange]);
 
   return (
     <section id="skills" className="py-24 bg-paper relative overflow-hidden">

@@ -11,6 +11,7 @@ declare global {
 interface NavbarProps {
   activeSection: SectionId;
   onNavigate: (id: SectionId) => void;
+  isHidden?: boolean;
 }
 
 const NAV_ITEMS: NavItem[] = [
@@ -21,7 +22,7 @@ const NAV_ITEMS: NavItem[] = [
   { id: 'connect', label: 'Contact' },
 ];
 
-const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => {
+const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, isHidden = false }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 flex items-center justify-between px-6 py-4 md:px-12 ${scrolled ? 'bg-paper/95 shadow-md border-b border-umber/10' : 'bg-transparent'} backdrop-blur-sm`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 flex items-center justify-between px-6 py-4 md:px-12 ${scrolled ? 'bg-paper/95 shadow-md border-b border-umber/10' : 'bg-transparent'} backdrop-blur-sm ${isHidden ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
       {/* Logo */}
       <div className="flex-shrink-0 z-50">
         <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('home'); }} className="group flex items-center gap-2">

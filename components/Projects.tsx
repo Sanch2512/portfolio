@@ -157,17 +157,21 @@ const FlavorWheel = ({ data }: { data: FlavorProfile }) => {
         </div>
     );
 };
+interface ProjectsProps {
+  onModalChange?: (isOpen: boolean) => void;
+}
 
-
-const Projects: React.FC = () => {
+const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [showGallery, setShowGallery] = useState(false);
 
   useEffect(() => {
-    if (selectedProject || showGallery) document.body.style.overflow = 'hidden';
+    const isOpen = !!(selectedProject || showGallery);
+    if (isOpen) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'unset';
+    onModalChange?.(isOpen);
     return () => { document.body.style.overflow = 'unset'; };
-  }, [selectedProject, showGallery]);
+  }, [selectedProject, showGallery, onModalChange]);
 
   return (
     <section id="projects" className="py-24 bg-paper relative">
