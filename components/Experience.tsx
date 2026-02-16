@@ -60,6 +60,7 @@ const Experience: React.FC = () => {
                     <div className="bg-forest text-paper p-6 rounded-xl shadow-lg text-center transform rotate-1 hover:rotate-0 transition-transform">
                         <div className="text-4xl font-serif font-extrabold mb-1">4x</div>
                         <div className="text-sage text-xs uppercase tracking-widest font-bold">National Finalist</div>
+                        <div className="text-sage/70 text-[10px] mt-2 leading-tight">SIH'25, Hack4Delhi, Synaphack 3.0, Startup Spotlight</div>
                     </div>
                      <div className="bg-white text-umber p-6 rounded-xl shadow-lg border border-umber/10 text-center transform -rotate-1 hover:rotate-0 transition-transform">
                         <div className="text-4xl font-serif font-extrabold mb-1 text-clay">SIH'25</div>
